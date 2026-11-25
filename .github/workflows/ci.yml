@@ -47,6 +47,13 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x'
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - run: pip install meson ninja
     - run: sudo apt-get -y update
     - name: Install deps
@@ -85,6 +92,13 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x'
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - run: pip install meson ninja
     - run: sudo apt-get -y update
     - name: Install deps
@@ -112,6 +126,13 @@ jobs:
       uses: egor-tensin/setup-clang@v1
       with:
         version: latest
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - run: pip install meson ninja
     - run: sudo apt-get -y update
     - name: Install deps
@@ -136,6 +157,13 @@ jobs:
       uses: egor-tensin/setup-clang@v1
       with:
         version: latest
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - run: pip install meson ninja
     - run: sudo apt-get -y update
     - name: Install deps
@@ -159,6 +187,13 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x'
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - run: pip install ninja
     - run: pip install meson
     - name: Prepare MSVC
@@ -176,6 +211,13 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x'
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - run: pip install ninja
     - run: pip install meson
     - name: Prepare MSVC
@@ -190,17 +232,24 @@ jobs:
   windows-release:
     runs-on: windows-latest
     env:
-      VULKAN_SDK: c:\VulkanSDK\1.2.198.1
+      VULKAN_SDK: c:\\VulkanSDK\\1.2.198.1
     steps:
     - uses: actions/checkout@v1
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x'
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     # Vulkan SDK, needed for integration tests
     # - name: Download Vulkan SDK
     #   run: curl -L --silent --show-error --output VulkanSDK.exe https://sdk.lunarg.com/sdk/download/1.2.198.1/windows/VulkanSDK-1.2.198.1-Installer.exe
     # - name: Install Vulkan SDK
-    #   run: .\VulkanSDK.exe --accept-licenses --default-answer --confirm-command install
+    #   run: .\\VulkanSDK.exe --accept-licenses --default-answer --confirm-command install
     - run: pip install ninja
     - run: pip install meson
     - name: Prepare MSVC
@@ -224,7 +273,6 @@ jobs:
           build/VkLayer_live_introspection.pdb
           build/register_layer.bat
 
-
   windows-release-tracy:
     runs-on: windows-latest
     steps:
@@ -232,6 +280,13 @@ jobs:
     - uses: actions/setup-python@v1
       with:
         python-version: '3.x'
+    - name: Cache pip dependencies
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-v1
+        restore-keys: |
+          ${{ runner.os }}-pip-
     - run: pip install ninja
     - run: pip install meson
     - name: Prepare MSVC
