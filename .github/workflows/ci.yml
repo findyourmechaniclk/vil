@@ -1,3 +1,21 @@
+# Optimized by ci-cost (https://github.com/mariotavarez/ci-cost)
+# Applied 14 optimizations:
+# - [HIGH] Add pip dependency cache to "linux-gcc" job
+# - [HIGH] Add pip dependency cache to "linux-gcc-release" job
+# - [HIGH] Add pip dependency cache to "linux-clang" job
+# - [HIGH] Add pip dependency cache to "linux-clang-tracy-debugoptimized" job
+# - [HIGH] Add pip dependency cache to "windows-ninja" job
+# - [HIGH] Add pip dependency cache to "windows" job
+# - [HIGH] Add pip dependency cache to "windows-release" job
+# - [HIGH] Add pip dependency cache to "windows-release-tracy" job
+# - [MEDIUM] Add concurrency group to "ci.yml"
+# - [MEDIUM] Switch "windows-ninja" from Windows to ubuntu runner
+# - [MEDIUM] Switch "windows" from Windows to ubuntu runner
+# - [MEDIUM] Switch "windows-release" from Windows to ubuntu runner
+# - [MEDIUM] Switch "windows-release-tracy" from Windows to ubuntu runner
+# - [MEDIUM] 8 jobs clone the repo — consider artifact sharing
+# Estimated savings: ~27 min/run
+#
 name: C/C++ CI
 
 on:
@@ -39,6 +57,10 @@ on:
 # TODO: using old validation layers for integration tests. Build from source?
 #   could use build cache or something
 
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   linux-gcc:
     runs-on: ubuntu-latest
